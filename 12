@@ -1,0 +1,74 @@
+#include <iostream>
+
+using namespace std;
+
+// --------- Task 1
+int power(int base, int exponent) {
+    int result = 1;
+    for (int i = 0; i < exponent; ++i) {
+        result *= base;
+    }
+    return result;
+}
+
+// --------- Task 2
+int sumInRange(int a, int b) {
+    int sum = 0;
+    for (int i = a + 1; i < b; ++i) {
+        sum += i;
+    }
+    return sum;
+}
+
+// --------- Task 3
+void findPerfectNumbers(int start, int end) {
+    for (int num = start; num <= end; ++num) {
+        int sum = 0;
+        for (int i = 1; i <= num / 2; ++i) {
+            if (num % i == 0) {
+                sum += i;
+            }
+        }
+        if (sum == num) {
+            cout << num << " is a perfect number." << endl;
+        }
+    }
+}
+
+// --------- Task 4
+void printCard(int rank, int suit) {
+    const char* ranks[] = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
+    const char* suits[] = { "Hearts", "Diamonds", "Clubs", "Spades" };
+    cout << ranks[rank - 2] << " of " << suits[suit - 1] << endl;
+}
+
+// --------- Task 5
+bool isLucky(int number) {
+    int sum = 0;
+    while (number > 0) {
+        sum += number % 10;
+        number /= 10;
+    }
+    return (sum == 21);
+}
+
+int main() {
+    // Testing Task 1
+    cout << "Task 1: " << power(2, 3) << endl;
+
+    // Testing Task 2
+    cout << "Task 2: " << sumInRange(3, 7) << endl;
+
+    // Testing Task 3
+    cout << "Task 3: Perfect numbers between 1 and 100:" << endl;
+    findPerfectNumbers(1, 100);
+
+    // Testing Task 4
+    cout << "Task 4: ";
+    printCard(5, 2);
+
+    // Testing Task 5
+    cout << "Task 5: Is 123456 a lucky number? " << (isLucky(123456) ? "Yes" : "No") << endl;
+
+    return 0;
+}
