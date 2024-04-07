@@ -1,0 +1,74 @@
+#include <iostream>
+
+using namespace std;
+
+
+int linearSearch(int arr[], int size, int key) {
+    for (int i = 0; i < size; ++i) {
+        if (arr[i] == key) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+
+int binarySearch(int arr[], int size, int key) {
+    int low = 0;
+    int high = size - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        if (arr[mid] == key) {
+            return mid;
+        }
+        else if (arr[mid] < key) {
+            low = mid + 1;
+        }
+        else {
+            high = mid - 1;
+        }
+    }
+    return -1;
+}
+
+
+int binaryToDecimal(int binary) {
+    int decimal = 0;
+    int base = 1;
+    while (binary > 0) {
+        int lastDigit = binary % 10;
+        binary /= 10;
+        decimal += lastDigit * base;
+        base *= 2;
+    }
+    return decimal;
+}
+
+
+int main() {
+    int arr[] = { 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 };
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    int key = 14;
+    int linearResult = linearSearch(arr, size, key);
+    if (linearResult != -1) {
+        cout << "Linear Search: Key found at index " << linearResult << endl;
+    }
+    else {
+        cout << "Linear Search: Key not found" << endl;
+    }
+
+    int binaryResult = binarySearch(arr, size, key);
+    if (binaryResult != -1) {
+        cout << "Binary Search: Key found at index " << binaryResult << endl;
+    }
+    else {
+        cout << "Binary Search: Key not found" << endl;
+    }
+
+    int binaryNumber = 1010;
+    int decimalNumber = binaryToDecimal(binaryNumber);
+    cout << "Binary to Decimal: " << binaryNumber << " -> " << decimalNumber << endl;
+
+    return 0;
+}
